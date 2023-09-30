@@ -24,6 +24,9 @@ app.get('/', (req, res) => {
     )
 })
 
+// Seed Endpoint
+app.get('/seed', require('./db/seed'))
+
 // register v1 endpoints
 app.use('/api/v1', v1Router)
 
