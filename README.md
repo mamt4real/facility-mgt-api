@@ -3,6 +3,10 @@
 - Author: [Mahadi Abuhuraira](https://github.com/mamt4real)
 - Date: 30th Sep, 2023
 
+## Entity relationship Diagram
+
+## ![E-R Diagram](./erd.png)
+
 # Facility-Management API Documentation
 
 Welcome to the Facility Management documentation. This API allows Departments to manage their facilities.
@@ -16,6 +20,8 @@ Welcome to the Facility Management documentation. This API allows Departments to
 
 - Authentication is required for all endpoints except auth endpoints.
 - Include a token in the `Authorization` header for each request using the Bearer format.
+
+---
 
 ## Authentication Endpoints
 
@@ -90,6 +96,8 @@ Welcome to the Facility Management documentation. This API allows Departments to
   }
 }
 ```
+
+---
 
 ## Buildings Endpoints
 
@@ -212,6 +220,8 @@ Welcome to the Facility Management documentation. This API allows Departments to
 - **Response**:
 - Status: 204 No Content
 
+---
+
 ## Users Endpoints
 
 ### 1. Get All Users
@@ -325,6 +335,8 @@ Status: 200 OK
   - `id`: (string) The ID of the user to delete.
 - **Response**:
   Status: 204 No Content
+
+---
 
 ## Error Handling
 
