@@ -14,4 +14,14 @@ facilityRouter
   .patch(FacilityController.updateFacility)
   .delete(FacilityController.deleteFacility)
 
+facilityRouter
+  .route('/:facilityID/resources')
+  .get(FacilityController.getFacilityResources)
+  .post(FacilityController.addResourceToFacility)
+
+facilityRouter
+  .route('/:facilityID/resources/:resourceID')
+  .patch(FacilityController.updateFacilityResource)
+  .delete(FacilityController.removeResourceFromFacility)
+
 module.exports = facilityRouter
