@@ -100,14 +100,14 @@ const uploadSingleImage = multer({
 }).single('image')
 
 const resizeBuildingImage = resizeSingleImage('buildings')
-const resizeFaciltyImage = resizeSingleImage('facilities')
+const resizeFacilityImage = resizeSingleImage('facilities')
 const resizeResourceImage = resizeSingleImage('resources')
 
 module.exports = {
   resizeUserPhoto,
   uploadSingleImage,
   resizeBuildingImage,
-  resizeFaciltyImage,
+  resizeFacilityImage,
   resizeResourceImage,
   getPhotoLocalPath,
 }

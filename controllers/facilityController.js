@@ -1,3 +1,4 @@
+const { isValidObjectId } = require('mongoose')
 const BadRequest = require('../errors/badRequest')
 const NotFound = require('../errors/not-found')
 const Facility = require('../models/Facility')
@@ -13,6 +14,8 @@ const addResourceToFacility = catchAsync(async (req, res, next) => {
   const { resource, quantity } = req.body
   if (!resource || !quantity)
     return next(new BadRequest('resource and quantity fields are required'))
+  if (!isValidObjectId(resource))
+    return next(new BadRequest('resource field should be an id of a Resource'))
 
   const resourceDoc = await Resource.findById(resource)
   if (!resourceDoc)
@@ -63,6 +66,8 @@ const getFacilityResources = catchAsync(async (req, res, next) => {
   if (!facility)
     return next(new NotFound('No facility with ID: ' + req.params.facilityID))
 
+  facility.depopulate()
+  await facility.populate('resources.resource')
   res.status(200).json({
     status: 'success',
     message: 'resources retrieved successfully',
@@ -82,9 +87,8 @@ const updateFacilityResource = catchAsync(async (req, res, next) => {
     (r) => r.resource.toString() === req.params.resourceID.toString()
   )
   if (resource) {
-    quantity &&
-      (resource.quantity = quantity)(!isNaN(Number(notWorking))) &&
-      (resource.notWorking = notWorking)
+    quantity && (resource.quantity = quantity)
+    !isNaN(Number(notWorking)) && (resource.notWorking = notWorking)
   } else {
     return next(
       new NotFound(

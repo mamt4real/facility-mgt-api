@@ -1,17 +1,29 @@
 const { Router } = require('express')
 const ResourceController = require('../controllers/resourceController')
+const {
+  uploadSingleImage,
+  resizeResourceImage,
+} = require('../utils/multerHandler')
 
 const resourceRouter = Router({ mergeParams: true })
 
 resourceRouter
   .route('/')
   .get(ResourceController.getAllResources)
-  .post(ResourceController.createResource)
+  .post(
+    uploadSingleImage,
+    resizeResourceImage,
+    ResourceController.createResource
+  )
 
 resourceRouter
-  .route('/:ResourceID')
+  .route('/:resourceID')
   .get(ResourceController.getResource)
-  .patch(ResourceController.updateResource)
+  .patch(
+    uploadSingleImage,
+    resizeResourceImage,
+    ResourceController.updateResource
+  )
   .delete(ResourceController.deleteResource)
 
 module.exports = resourceRouter

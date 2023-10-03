@@ -52,7 +52,10 @@ const facilitySchema = new mongoose.Schema(
 
 // Populate The resource
 facilitySchema.pre(/^find/, function (next) {
-  this.populate('resources.resource', '-createdAt -updatedAt')
+  this.populate('resources.resource', 'name category image').populate(
+    'building',
+    'name location'
+  )
   next()
 })
 
