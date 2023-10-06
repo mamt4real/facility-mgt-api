@@ -44,7 +44,7 @@ class QueryHandler {
     if (this.queryString.sort) {
       let sortBy = this.queryString.sort
       if (sortBy instanceof Array) sortBy = sortBy.join(' ')
-      else sortBy = sortBy.split(',').join(' ')
+      else sortBy = sortBy?.split(',').join(' ')
       return sortBy
     } else {
       //default sort
@@ -59,7 +59,7 @@ class QueryHandler {
    */
   project() {
     if (this.queryString.fields) {
-      const fields = this.queryString.fields.split(',').join(' ')
+      const fields = this.queryString.fields?.split(',').join(' ')
       return fields
     } else {
       return '-__v -createdAt -updatedAt -createdBy -updatedBy'

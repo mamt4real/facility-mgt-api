@@ -71,7 +71,10 @@ const resizeUserPhoto = catchAsync(async (req, res, next) => {
 const resizeSingleImage = (type) =>
   catchAsync(async (req, res, next) => {
     if (!req.file) return next()
-    const splitted = req.file.originalname?.trim().replace(/\s/, '_').split('.')
+    const splitted = req.file.originalname
+      ?.trim()
+      .replace(/\s/, '_')
+      ?.split('.')
     // Extract Name without the extension
     const oname = splitted.slice(0, -1).join('')
     const filename = `${type}-${oname}.jpeg`
