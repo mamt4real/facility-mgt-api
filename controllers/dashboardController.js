@@ -1,15 +1,22 @@
 const Building = require('../models/Building')
 const Facility = require('../models/Facility')
 const Resource = require('../models/Resource')
+const User = require('../models/User')
 
 const getDashboard = async () => {
   const facilities = await Facility.countDocuments()
   const buildings = await Building.countDocuments()
   const resources = await Resource.countDocuments()
+  const users = await User.countDocuments()
   res.status(200).json({
-    buildings,
-    facilities,
-    resources,
+    status: 'success',
+    message: 'stats retrieved successfully',
+    data: {
+      users,
+      buildings,
+      facilities,
+      resources,
+    },
   })
 }
 
