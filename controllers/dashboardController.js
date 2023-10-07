@@ -2,8 +2,9 @@ const Building = require('../models/Building')
 const Facility = require('../models/Facility')
 const Resource = require('../models/Resource')
 const User = require('../models/User')
+const catchAsync = require('../utils/catchAsync')
 
-const getDashboard = async () => {
+const getDashboard = catchAsync(async (req, res, next) => {
   const facilities = await Facility.countDocuments()
   const buildings = await Building.countDocuments()
   const resources = await Resource.countDocuments()
@@ -18,7 +19,7 @@ const getDashboard = async () => {
       resources,
     },
   })
-}
+})
 
 module.exports = {
   getDashboard,
