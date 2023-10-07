@@ -17,7 +17,7 @@ buildingRouter
   )
 
 buildingRouter
-  .route('/:BuildingID')
+  .route('/:buildingID')
   .get(BuildingController.getBuilding)
   .patch(
     uploadSingleImage,
